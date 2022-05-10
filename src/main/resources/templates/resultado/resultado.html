@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div th:replace="preloader"></div>
+
+<div id="main-wrapper">
+
+    <div th:replace="/fragments/nav-header"></div>
+
+    <div th:replace="/fragments/header"></div>
+
+    <div th:replace="/fragments/menu"></div>
+
+    <div class="content-body">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card card-widget">
+                                <div class="card-body gradient-4">
+                                    <div class="media">
+                                        <span class="card-widget__icon"><i class="icon-emotsmile"></i></span>
+                                        <div class="media-body">
+                                            <h3 class="text-white">
+                                                <span th:text="${#lists.size(resultados)}"/>
+                                                resultados Cadastrados
+                                            </h3>
+                                        </div>
+                                        <div class="right">
+                                            <a href="/resultados/add">
+                                                <button type="button"  class="btn mb-1 btn-rounded btn-info btn-lg">
+                                                    <i class="icon-plus" style="margin-top:10px"></i>
+                                                    Novo resultado
+                                                </button>
+                                            </a>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">id</th>
+                                        <th scope="col">Votos do Lula</th>
+                                        <th scope="col">Votos do Bolsonaro</th>
+                                        <th scope="col">Vencedor</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="resultado : ${resultados}">
+                                        <th scope="row" th:text="${resultado.id}"></th>
+                                        <td>
+                                            <a th:href="@{'/resultados/' + ${resultado.id}}" ></a>
+
+                                        </td>
+
+                                        <td th:text="${resultado.votosDoLula}"></td>
+                                        <td th:text="${resultado.votosDoBolsonaro}"></td>
+                                        <td th:text="${resultado.vencedor}"></td>
+
+                                        <td>
+                                            <a th:href="@{'/resultados/deletar/' + ${resultado.id}}">
+                                                <i class="icon-trash" ></i>
+                                            </a>
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="/fragments/footer"></div>
+
+</div>
+
+<script src="plugins/common/common.min.js"></script>
+<script src="js/custom.min.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/gleek.js"></script>
+<script src="js/styleSwitcher.js"></script>
+
+</body>
+
+</html>
